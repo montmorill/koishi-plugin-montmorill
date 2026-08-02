@@ -1,8 +1,8 @@
 import type { Awaitable, Context } from 'koishi'
 import {} from '@koishijs/plugin-help'
 import { h, Random, Schema } from 'koishi'
-import enUS from '../locales/en-US.yml'
-import zhCN from '../locales/zh-CN.yml'
+import enUS from './locales/en-US.yml'
+import zhCN from './locales/zh-CN.yml'
 
 export const name = 'textutils'
 
