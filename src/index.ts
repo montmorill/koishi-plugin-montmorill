@@ -94,8 +94,10 @@ export function apply(ctx: Context) {
       }
 
       const regex = new RegExp(needle, 'gu')
-      const elements = lines.flatMap((line) => {
-        const matches = line.matchAll(regex)
+      const elements = lines.map((line) => {
+        const matches = Array.from(line.matchAll(regex))
+        if (!matches.length)
+          return []
         const elements = []
         let current = 0
         for (const match of matches) {
@@ -106,9 +108,9 @@ export function apply(ctx: Context) {
         }
         if (current < line.length)
           elements.push(h.text(line.substring(current)))
-        elements.push(' ')
         return elements
       })
+        .flatMap(elements => elements.length ? [...elements, ' '] : [])
       elements.pop()
       return elements
     })
